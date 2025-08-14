@@ -107,7 +107,7 @@ COPY --from=ghcr.io/astral-sh/uv:0.6.17 /uv /bin/uv
 COPY --from=python-builder /opt/prefect/dist ./dist
 
 # Extras to include during installation
-ARG PREFECT_EXTRAS=[redis,client,otel]
+ARG PREFECT_EXTRAS=[client,otel]
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv pip install "./dist/prefect.tar.gz${PREFECT_EXTRAS:-""}" && \
     rm -rf dist/
